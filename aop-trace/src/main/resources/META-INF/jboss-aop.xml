@@ -1,0 +1,13 @@
+<aop xmlns="urn:jboss:aop-beans:1.0">
+    <interceptor class="biz.majorov.aop.NMInterceptor" scope="PER_CLASS"/>
+    <aspect name="NMAspect" class="biz.majorov.aop.Aspect" scope="PER_VM"/>
+
+    <bind pointcut="call(public double $instanceof{biz.majorov.jee.SphereBean}->computeVolume(double))">
+       <interceptor-ref name="biz.majorov.aop.NMInterceptor" />
+    </bind>
+
+    <bind pointcut="all(biz.majorov.jee.SphereBeanImpl)">
+       <advice name="trace" aspect="NMAspect"/>
+    </bind>
+
+</aop>

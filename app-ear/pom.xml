@@ -1,0 +1,78 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>biz.majorov.jee</groupId>
+    <artifactId>app-jee</artifactId>
+    <version>1.0</version>
+  </parent>
+
+  <artifactId>app-ear</artifactId>
+  <packaging>ear</packaging>
+
+  <name>app-ear</name>
+
+  <dependencies>
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>app-web</artifactId>
+      <version>${project.version}</version>
+      <type>war</type>
+    </dependency>
+
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>app-ejb</artifactId>
+      <version>${project.version}</version>
+      <type>ejb</type>
+    </dependency>
+
+    <dependency>
+      <groupId>${project.groupId}</groupId>
+      <artifactId>aop-trace</artifactId>
+      <version>${project.version}</version>
+      <type>jar</type>
+    </dependency>
+
+  </dependencies>
+
+  <build>
+
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-ear-plugin</artifactId>
+        <configuration>
+          <!--
+		<jboss>
+		    <version>4</version>
+		    <loader-repository>seam.jboss.org:loader=app-ear.ear</loader-repository>
+		</jboss>
+		-->
+          <modules>
+
+            <jarModule>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>aop-trace</artifactId>
+              <bundleFileName>aop-trace.aop</bundleFileName>
+              <includeInApplicationXml>true</includeInApplicationXml>
+            </jarModule>
+
+            <ejbModule>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>app-ejb</artifactId>
+              <bundleFileName>app-ejb.jar</bundleFileName>
+            </ejbModule>
+
+            <webModule>
+              <groupId>${project.groupId}</groupId>
+              <artifactId>app-web</artifactId>
+            </webModule>
+
+          </modules>
+        </configuration>
+      </plugin>
+
+    </plugins>
+  </build>
+</project>
