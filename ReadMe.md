@@ -9,7 +9,7 @@ tested with jdk1.7 and jboss-5.1.0.GA
 
 JBOSS aop uses load-time weaving and it hast to be enabled on the server.
 
-## How-to enable aop load-time weaver in JBOSS 5 server ## 
+## How-to enable aop load-time weaver in JBOSS 5 server 
 
 set javaagent property with instrumentation from server:
 
